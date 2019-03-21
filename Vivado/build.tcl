@@ -3,7 +3,7 @@
 #
 #*****************************************************************************************
 
-set design_name microzed_axi_dma
+set design_name snickerdoodle_black_axi_dma
 
 # Set the reference directory for source file relative paths (by default the value is script directory path)
 set origin_dir "."
@@ -12,14 +12,14 @@ set origin_dir "."
 set orig_proj_dir "[file normalize "$origin_dir/$design_name"]"
 
 # Create project
-create_project $design_name $origin_dir/$design_name -part xc7z010clg400-1
+create_project $design_name $origin_dir/$design_name -part xc7z020clg400-3
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [get_projects $design_name]
-set_property -name "board_part" -value "em.avnet.com:microzed_7010:part0:1.1" -objects $obj
+set_property -name "board_part" -value "krtkl.com:snickerdoodle_black:part0:1.0" -objects $obj
 set_property -name "default_lib" -value "xil_defaultlib" -objects $obj
 set_property -name "ip_cache_permissions" -value "read write" -objects $obj
 set_property -name "ip_output_repo" -value "$proj_dir/$design_name.cache/ip" -objects $obj
@@ -64,7 +64,7 @@ set_property "top" "${design_name}_wrapper" $obj
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-  create_run -name synth_1 -part xc7z010clg400-1 -flow {Vivado Synthesis 2018} -strategy "Vivado Synthesis Defaults" -constrset constrs_1
+  create_run -name synth_1 -part xc7z020clg400-3 -flow {Vivado Synthesis 2018} -strategy "Vivado Synthesis Defaults" -constrset constrs_1
 } else {
   set_property strategy "Vivado Synthesis Defaults" [get_runs synth_1]
   set_property flow "Vivado Synthesis 2018" [get_runs synth_1]
